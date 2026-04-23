@@ -1,0 +1,110 @@
+body {
+    margin: 0;
+    font-family: 'Cairo', sans-serif;
+    background: linear-gradient(-45deg, #fdf6f0, #f8efe6, #fffaf5, #f3e8dc);
+    background-size: 400% 400%;
+    animation: gradientBG 12s ease infinite;
+    overflow-x: hidden;
+}
+
+/* خلفية مزخرفة */
+body::before {
+    content: "";
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(circle, rgba(200,180,150,0.15) 1px, transparent 1px);
+    background-size: 30px 30px;
+    z-index: 0;
+}
+
+@keyframes gradientBG {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+}
+
+/* شاشة البداية */
+.intro {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #5c4b3c;
+}
+
+.logo {
+    font-family: 'Great Vibes', cursive;
+    font-size: 70px;
+}
+
+.heart {
+    font-size: 50px;
+    cursor: pointer;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% {transform: scale(1);}
+    50% {transform: scale(1.2);}
+    100% {transform: scale(1);}
+}
+
+/* الدعوة */
+.invitation {
+    text-align: center;
+    padding: 40px 20px;
+    color: #5c4b3c;
+    animation: fadeIn 1.5s ease;
+}
+
+.hidden {
+    display: none;
+}
+
+.names {
+    font-family: 'Great Vibes', cursive;
+    font-size: 60px;
+}
+
+.divider {
+    width: 80px;
+    height: 2px;
+    background: #d6c1a8;
+    margin: 20px auto;
+}
+
+.text {
+    max-width: 600px;
+    margin: auto;
+    background: rgba(255,255,255,0.7);
+    padding: 25px;
+    border-radius: 15px;
+    line-height: 1.8;
+    font-size: 18px;
+}
+
+@keyframes fadeIn {
+    from {opacity: 0; transform: translateY(20px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+
+/* قلوب متطايرة */
+.heart-float {
+    position: fixed;
+    bottom: 0;
+    font-size: 20px;
+    animation: floatUp 4s linear forwards;
+}
+
+@keyframes floatUp {
+    from {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(-100vh);
+        opacity: 0;
+    }
+}
