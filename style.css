@@ -7,7 +7,6 @@ body {
     overflow-x: hidden;
 }
 
-/* خلفية مزخرفة */
 body::before {
     content: "";
     position: fixed;
@@ -24,7 +23,6 @@ body::before {
     100% {background-position: 0% 50%;}
 }
 
-/* شاشة البداية */
 .intro {
     height: 100vh;
     display: flex;
@@ -51,7 +49,6 @@ body::before {
     100% {transform: scale(1);}
 }
 
-/* الدعوة */
 .invitation {
     text-align: center;
     padding: 40px 20px;
@@ -85,12 +82,29 @@ body::before {
     font-size: 18px;
 }
 
-@keyframes fadeIn {
-    from {opacity: 0; transform: translateY(20px);}
-    to {opacity: 1; transform: translateY(0);}
+.countdown {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    font-size: 18px;
 }
 
-/* قلوب متطايرة */
+.countdown span {
+    font-weight: bold;
+    font-size: 22px;
+}
+
+.calendar-btn {
+    display: inline-block;
+    margin-top: 20px;
+    background: #d6c1a8;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 25px;
+    text-decoration: none;
+}
+
+/* قلوب حمراء */
 .heart-float {
     position: fixed;
     bottom: 0;
@@ -99,12 +113,11 @@ body::before {
 }
 
 @keyframes floatUp {
-    from {
-        transform: translateY(0);
-        opacity: 1;
-    }
-    to {
-        transform: translateY(-100vh);
-        opacity: 0;
-    }
+    from {transform: translateY(0); opacity: 1;}
+    to {transform: translateY(-100vh); opacity: 0;}
+}
+
+@keyframes fadeIn {
+    from {opacity: 0; transform: translateY(20px);}
+    to {opacity: 1; transform: translateY(0);}
 }
