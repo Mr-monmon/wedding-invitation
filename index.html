@@ -6,7 +6,6 @@
 <title>دعوة زفاف M & M</title>
 
 <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/833/833472.png">
-
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;500;700&family=Great+Vibes&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
@@ -29,10 +28,22 @@
 
     <!-- العد التنازلي -->
     <div class="countdown">
-        <div><span id="days"></span> يوم</div>
-        <div><span id="hours"></span> ساعة</div>
-        <div><span id="minutes"></span> دقيقة</div>
-        <div><span id="seconds"></span> ثانية</div>
+        <div class="time-box">
+            <span id="days"></span>
+            <small>يوم</small>
+        </div>
+        <div class="time-box">
+            <span id="hours"></span>
+            <small>ساعة</small>
+        </div>
+        <div class="time-box">
+            <span id="minutes"></span>
+            <small>دقيقة</small>
+        </div>
+        <div class="time-box">
+            <span id="seconds"></span>
+            <small>ثانية</small>
+        </div>
     </div>
 
     <div class="divider"></div>
@@ -42,31 +53,45 @@
         لأنكم جزء غالي من رحلتنا، يسعدنا أن تشاركونا فرحة ليلة عمرنا.<br>
         بكل حب، ندعوكم لمشاركتنا هذه اللحظات التي طال انتظارها.<br><br>
 
-        <strong style="font-size:20px;">
+        <strong>
         Sunday | 28 June 2026<br>
         10:30 PM
         </strong><br><br>
+
+        وحيكون في مدينة اربد - المملكة الاردنية الهاشمية<br>
+        في صالة الشرق للاحتفالات - القاعة الملكية<br>
+
+        <a class="map-link" target="_blank"
+        href="https://maps.app.goo.gl/s29vBzojB1P3SVJD8">
+        📍 عرض الموقع
+        </a>
+
+        <br><br>
 
         سنوافيكم ببقية التفاصيل قريباً،<br>
         لكن الآن.. يهمنا أن تدونوا هذا التاريخ في قلوبكم قبل تقويمكم. 🤍
 
         <br><br>
 
+        <!-- Google Calendar -->
         <a class="calendar-btn" target="_blank"
-        href="https://www.google.com/calendar/render?action=TEMPLATE&text=Wedding+M%26M&dates=20260628T193000Z/20260628T213000Z&details=Wedding&location=Irbid+Jordan">
-        📅 أضف إلى التقويم
+        href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Wedding+M%26M&dates=20260628T193000Z/20260628T213000Z&details=Wedding+in+Irbid+-+Al+Sharq+Hall&location=Irbid+Jordan">
+        📅 أضف إلى Google Calendar
+        </a>
+
+        <!-- ملف تقويم -->
+        <a class="calendar-btn" href="event.ics" download>
+        📥 تحميل الحدث (Apple/Outlook)
         </a>
 
     </div>
 
 </div>
 
-<!-- موسيقى -->
 <audio id="music" loop>
   <source src="music.mp3" type="audio/mpeg">
 </audio>
 
 <script src="script.js"></script>
-
 </body>
 </html>
