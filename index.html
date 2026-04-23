@@ -5,187 +5,51 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>دعوة زفاف M & M</title>
 
-<!-- Favicon -->
 <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/833/833472.png">
 
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;500;700&family=Great+Vibes&display=swap" rel="stylesheet">
 
-<style>
-body {
-    margin: 0;
-    font-family: 'Cairo', sans-serif;
-    background: linear-gradient(-45deg, #fdf6f0, #f8efe6, #fffaf5, #f3e8dc);
-    background-size: 400% 400%;
-    animation: gradientBG 15s ease infinite;
-    color: #5c4b3c;
-    text-align: center;
-}
-
-/* زخرفة خفيفة */
-body::before {
-    content: "";
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background-image: radial-gradient(circle, rgba(200,180,150,0.15) 1px, transparent 1px);
-    background-size: 25px 25px;
-    z-index: 0;
-}
-
-@keyframes gradientBG {
-    0% {background-position: 0% 50%;}
-    50% {background-position: 100% 50%;}
-    100% {background-position: 0% 50%;}
-}
-
-.container {
-    position: relative;
-    z-index: 1;
-    padding: 40px 20px;
-}
-
-/* خاتم */
-.ring {
-    font-size: 55px;
-    margin-bottom: 15px;
-}
-
-/* الأسماء */
-.names {
-    font-family: 'Great Vibes', cursive;
-    font-size: 65px;
-    margin: 10px 0;
-}
-
-/* خط فاصل */
-.divider {
-    width: 80px;
-    height: 2px;
-    background: #d6c1a8;
-    margin: 20px auto;
-}
-
-/* التاريخ */
-.date {
-    font-size: 22px;
-    margin-bottom: 10px;
-}
-
-/* العد التنازلي */
-.countdown {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin: 30px 0;
-    flex-wrap: wrap;
-}
-
-.box {
-    background: rgba(255,255,255,0.8);
-    border-radius: 15px;
-    padding: 15px;
-    width: 90px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-}
-
-.box span {
-    display: block;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-/* الموقع */
-.location {
-    margin-top: 25px;
-    font-size: 18px;
-    line-height: 1.8;
-}
-
-a {
-    display: inline-block;
-    margin-top: 10px;
-    text-decoration: none;
-    color: #8b6f4e;
-    font-weight: bold;
-}
-
-/* رسالة الدعوة */
-.invite {
-    margin-top: 40px;
-    font-size: 20px;
-    line-height: 1.8;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-    background: rgba(255,255,255,0.6);
-    padding: 20px;
-    border-radius: 15px;
-}
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<div class="container">
-
-<div class="ring">💍</div>
-
-<div class="names">M & M</div>
-
-<div class="divider"></div>
-
-<div class="date">الأحد | 28 يونيو 2026 - الساعة 10:30 مساءً</div>
-
-<div class="countdown">
-    <div class="box"><span id="days"></span>يوم</div>
-    <div class="box"><span id="hours"></span>ساعة</div>
-    <div class="box"><span id="minutes"></span>دقيقة</div>
-    <div class="box"><span id="seconds"></span>ثانية</div>
+<!-- شاشة البداية -->
+<div class="intro" id="intro">
+    <h1 class="logo">M & M</h1>
+    <p>اضغط على القلب</p>
+    <div class="heart" id="openBtn">❤️</div>
 </div>
 
-<div class="divider"></div>
+<!-- الدعوة -->
+<div class="invitation hidden" id="invitation">
 
-<div class="location">
-    📍 مدينة إربد - المملكة الأردنية الهاشمية<br>
-    صالة الشرق للاحتفالات - القاعة الملكية<br>
-    <a href="https://maps.app.goo.gl/s29vBzojB1P3SVJD8" target="_blank">عرض الموقع على الخريطة</a>
+    <div class="names">M & M</div>
+
+    <div class="divider"></div>
+
+    <div class="text">
+        <h2>سنتزوج! 💍</h2>
+
+        يسعدنا للغاية أن نعلن زواجنا!<br>
+        نتمنى أن تشاركونا فرحتنا في هذا اليوم المميز.<br><br>
+
+        <strong>م و م</strong><br><br>
+
+        انضموا إلينا في حفل زفافنا يوم:<br>
+        <strong>
+        الأحد | ٢٨ يونيو ٢٠٢٦ - الساعة ١٠:٣٠ مساءً
+        </strong><br><br>
+
+        سنوافيكم بالمزيد من التفاصيل لاحقًا، ولكن في الوقت الحالي،<br>
+        نرجو منكم تدوين التاريخ!<br><br>
+
+        نتطلع بشوق لمشاركة هذه الفرحة معكم جميعًا 💛
+    </div>
+
 </div>
 
-<div class="divider"></div>
-
-<div class="invite">
-    بكل حب وفرح 💛<br><br>
-    يسعدنا ويشرفنا دعوتكم لحضور حفل زفافنا<br>
-    ومشاركتنا أجمل لحظات العمر<br><br>
-    حضوركم هو أجمل هدية لنا ✨<br><br>
-    ننتظركم لنحتفل سويًا بهذه الليلة المميزة 💍
-</div>
-
-</div>
-
-<script>
-const targetDate = new Date("2026-06-28T22:30:00").getTime();
-
-const countdown = setInterval(() => {
-    const now = new Date().getTime();
-    const distance = targetDate - now;
-
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
-    const minutes = Math.floor((distance / (1000 * 60)) % 60);
-    const seconds = Math.floor((distance / 1000) % 60);
-
-    document.getElementById("days").innerHTML = days;
-    document.getElementById("hours").innerHTML = hours;
-    document.getElementById("minutes").innerHTML = minutes;
-    document.getElementById("seconds").innerHTML = seconds;
-
-    if (distance < 0) {
-        clearInterval(countdown);
-        document.querySelector(".countdown").innerHTML = "🎉 تم الزفاف 🎉";
-    }
-}, 1000);
-</script>
+<script src="script.js"></script>
 
 </body>
 </html>
