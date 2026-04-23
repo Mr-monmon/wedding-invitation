@@ -9,24 +9,24 @@ btn.addEventListener("click", () => {
 
     music.play();
 
+    // ورود
     for (let i = 0; i < 30; i++) {
-        createHeart();
+        createFlower();
     }
 });
 
-/* القلوب */
-function createHeart() {
-    const heart = document.createElement("div");
-    heart.classList.add("heart-float");
-    heart.innerHTML = "❤️";
+function createFlower() {
+    const flower = document.createElement("div");
+    flower.classList.add("flower");
+    flower.innerHTML = "🌸";
 
-    heart.style.left = Math.random() * 100 + "vw";
+    flower.style.left = Math.random() * 100 + "vw";
 
-    document.body.appendChild(heart);
+    document.body.appendChild(flower);
 
     setTimeout(() => {
-        heart.remove();
-    }, 4000);
+        flower.remove();
+    }, 5000);
 }
 
 /* العد التنازلي */
