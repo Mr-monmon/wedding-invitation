@@ -1,24 +1,60 @@
-body {
+/* ===== RESET & BASE ===== */
+*, *::before, *::after {
+    box-sizing: border-box;
     margin: 0;
-    font-family: 'Cairo', sans-serif;
-    background: linear-gradient(-45deg, #fdf6f0, #f8efe6, #fffaf5, #f3e8dc);
-    background-size: 400% 400%;
-    animation: gradientBG 12s ease infinite;
-    overflow-x: hidden;
+    padding: 0;
 }
 
-/* خلفية مزخرفة */
+:root {
+    --gold: #c9a84c;
+    --gold-light: #f0d080;
+    --gold-pale: #faf0d0;
+    --rose: #e8b4b8;
+    --rose-dark: #c47d84;
+    --cream: #fdf8f0;
+    --cream-dark: #f5ede0;
+    --brown: #6b4e3d;
+    --brown-light: #8b6e5a;
+    --text: #4a3728;
+    --white-glass: rgba(255, 255, 255, 0.75);
+}
+
+/* ===== CANVAS PARTICLES ===== */
+#particles {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* ===== BODY ===== */
+body {
+    font-family: 'Cairo', sans-serif;
+    background: linear-gradient(135deg, #fdf8f0 0%, #f5ede0 30%, #fdf3e8 60%, #f0e8d8 100%);
+    background-attachment: fixed;
+    overflow-x: hidden;
+    min-height: 100vh;
+    color: var(--text);
+}
+
+/* ===== DECORATIVE BACKGROUND PATTERN ===== */
+/* FIX: pointer-events: none — كان يحجب النقر */
 body::before {
     content: "";
     position: fixed;
-    width: 100%;
-    height: 100%;
-    background-image: radial-gradient(circle, rgba(200,180,150,0.15) 1px, transparent 1px);
-    background-size: 30px 30px;
+    inset: 0;
+    background-image:
+        radial-gradient(circle, rgba(201,168,76,0.12) 1px, transparent 1px);
+    background-size: 28px 28px;
+    pointer-events: none; /* ← الإصلاح الأساسي */
+    z-index: 0;
 }
 
-/* شاشة البداية */
+/* ===== INTRO SCREEN ===== */
 .intro {
+    position: relative;
+    z-index: 10;
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -26,101 +62,461 @@ body::before {
     align-items: center;
 }
 
-/* M&M ذهبي */
+.intro-inner {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    animation: fadeInUp 1.2s ease both;
+}
+
+.intro-ornament {
+    color: var(--gold);
+    letter-spacing: 8px;
+    font-size: 13px;
+    opacity: 0.7;
+}
+
+/* ===== LOGO / NAMES ===== */
 .logo, .names {
     font-family: 'Great Vibes', cursive;
-    font-size: 70px;
-    font-weight: bold;
-    background: linear-gradient(45deg, #d4af37, #f7e7a1);
+    font-size: clamp(64px, 12vw, 90px);
+    background: linear-gradient(135deg, #a07830 0%, #d4a840 35%, #f7e090 60%, #c49030 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 2px 6px rgba(180,140,60,0.3));
+    line-height: 1.1;
 }
 
-/* قلب */
-.heart {
-    font-size: 50px;
+.intro-subtitle {
+    font-size: 16px;
+    color: var(--brown-light);
+    letter-spacing: 4px;
+    font-weight: 300;
+}
+
+/* ===== HEART BUTTON ===== */
+.heart-wrapper {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
-    animation: pulse 1.5s infinite;
+    margin: 8px 0;
 }
 
-/* الدعوة */
+.heart-ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 1.5px solid var(--gold);
+    opacity: 0;
+    animation: ringPulse 2.5s ease-out infinite;
+}
+
+.ring1 { width: 70px; height: 70px; animation-delay: 0s; }
+.ring2 { width: 90px; height: 90px; animation-delay: 0.8s; }
+
+@keyframes ringPulse {
+    0%   { transform: scale(0.5); opacity: 0.8; }
+    100% { transform: scale(1.4); opacity: 0; }
+}
+
+.heart {
+    font-size: 52px;
+    cursor: pointer;
+    animation: heartBeat 1.6s ease-in-out infinite;
+    position: relative;
+    z-index: 1;
+    transition: transform 0.2s ease;
+    user-select: none;
+    /* FIX: تأكد أن القلب قابل للنقر */
+    pointer-events: all;
+}
+
+.heart:hover {
+    transform: scale(1.2);
+}
+
+.heart:active {
+    transform: scale(0.9);
+}
+
+/* FIX: @keyframes pulse كان مفقوداً — أضفناه هنا بأسم heartBeat */
+@keyframes heartBeat {
+    0%, 100% { transform: scale(1); }
+    14%       { transform: scale(1.15); }
+    28%       { transform: scale(1); }
+    42%       { transform: scale(1.1); }
+    56%       { transform: scale(1); }
+}
+
+.intro-hint {
+    font-size: 13px;
+    color: var(--brown-light);
+    opacity: 0.7;
+    letter-spacing: 1px;
+}
+
+/* ===== INVITATION ===== */
 .invitation {
-    text-align: center;
-    padding: 40px 20px;
-    animation: cinematic 1.5s ease;
+    position: relative;
+    z-index: 10;
+    min-height: 100vh;
+    padding: 40px 16px 60px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
 }
 
-/* دخول سينمائي */
-@keyframes cinematic {
+.invitation-inner {
+    width: 100%;
+    max-width: 620px;
+    animation: cinematicReveal 1.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes cinematicReveal {
     from {
         opacity: 0;
-        transform: scale(0.9);
-        filter: blur(10px);
+        transform: translateY(40px) scale(0.96);
+        filter: blur(8px);
     }
     to {
         opacity: 1;
-        transform: scale(1);
+        transform: translateY(0) scale(1);
         filter: blur(0);
     }
 }
 
-.hidden { display: none; }
+.hidden { display: none !important; }
 
-/* العد التنازلي */
+/* ===== HEADER ===== */
+.header {
+    text-align: center;
+    padding: 36px 20px 28px;
+    background: var(--white-glass);
+    border-radius: 24px 24px 0 0;
+    border: 1px solid rgba(201,168,76,0.25);
+    border-bottom: none;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.header-ornament {
+    font-size: 12px;
+    letter-spacing: 6px;
+    color: var(--gold);
+    margin-bottom: 16px;
+    opacity: 0.85;
+}
+
+.names-ar {
+    font-size: 15px;
+    color: var(--brown-light);
+    letter-spacing: 2px;
+    margin-top: 8px;
+    font-weight: 300;
+}
+
+/* ===== FANCY DIVIDER ===== */
+.fancy-divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 24px;
+    background: var(--white-glass);
+    border-left: 1px solid rgba(201,168,76,0.25);
+    border-right: 1px solid rgba(201,168,76,0.25);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.fancy-divider .line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+.fancy-divider .diamond {
+    color: var(--gold);
+    font-size: 10px;
+    opacity: 0.8;
+}
+
+/* ===== COUNTDOWN ===== */
+.countdown-section {
+    text-align: center;
+    padding: 28px 20px;
+    background: var(--white-glass);
+    border-left: 1px solid rgba(201,168,76,0.25);
+    border-right: 1px solid rgba(201,168,76,0.25);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.countdown-label {
+    font-size: 13px;
+    color: var(--brown-light);
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    font-weight: 300;
+}
+
 .countdown {
     display: flex;
     justify-content: center;
-    gap: 20px;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.time-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: linear-gradient(135deg, #fff8e8, #fdf2d0);
+    border: 1px solid rgba(201,168,76,0.3);
+    border-radius: 14px;
+    padding: 14px 18px 10px;
+    min-width: 72px;
+    box-shadow: 0 4px 16px rgba(180,140,60,0.1), inset 0 1px 0 rgba(255,255,255,0.8);
 }
 
 .time-box span {
     display: block;
-    font-size: 28px;
-    color: #5c4b3c; /* بني */
-    font-weight: bold;
+    font-size: 32px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #a07830, #d4a840);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+    min-width: 2ch;
+    text-align: center;
 }
 
 .time-box small {
-    color: #d4af37; /* ذهبي */
+    color: var(--brown-light);
+    font-size: 11px;
+    margin-top: 6px;
+    letter-spacing: 1px;
 }
 
-/* فواصل */
-.divider {
-    width: 80px;
-    height: 2px;
-    background: #d6c1a8;
-    margin: 20px auto;
+.time-sep {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--gold);
+    opacity: 0.5;
+    margin-bottom: 18px;
 }
 
+/* ===== TEXT SECTION ===== */
 .text {
-    max-width: 600px;
-    margin: auto;
-    background: rgba(255,255,255,0.7);
-    padding: 25px;
-    border-radius: 15px;
-    line-height: 1.8;
+    background: var(--white-glass);
+    padding: 32px 28px;
+    border-left: 1px solid rgba(201,168,76,0.25);
+    border-right: 1px solid rgba(201,168,76,0.25);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    text-align: center;
 }
 
-/* أزرار */
-.calendar-btn, .map-link {
+.text-intro {
+    font-size: 16px;
+    line-height: 2;
+    color: var(--text);
+    font-style: italic;
+    font-family: 'Playfair Display', serif;
+    margin-bottom: 12px;
+}
+
+.text-body {
+    font-size: 14px;
+    line-height: 1.9;
+    color: var(--brown-light);
+    margin-bottom: 28px;
+}
+
+/* ===== EVENT DETAILS ===== */
+.event-details {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 24px 0;
+    text-align: right;
+}
+
+.detail-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: rgba(255,255,255,0.6);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 14px;
+    padding: 14px 18px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.detail-item:hover {
+    transform: translateX(-4px);
+    box-shadow: 4px 0 16px rgba(180,140,60,0.12);
+}
+
+.detail-icon {
+    font-size: 22px;
+    flex-shrink: 0;
+}
+
+.detail-item div {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.detail-item strong {
+    font-size: 15px;
+    color: var(--text);
+    font-weight: 600;
+}
+
+.detail-item small {
+    font-size: 12px;
+    color: var(--brown-light);
+    direction: ltr;
+    text-align: right;
+}
+
+/* ===== LINKS ===== */
+.map-link {
     display: inline-block;
-    margin-top: 10px;
-    background: #d4af37;
+    margin-top: 8px;
+    background: linear-gradient(135deg, #a07830, #c9a84c);
     color: white;
-    padding: 10px 20px;
-    border-radius: 25px;
+    padding: 12px 28px;
+    border-radius: 50px;
     text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 20px rgba(160,120,48,0.3);
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 
-/* ورود */
+.map-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(160,120,48,0.4);
+}
+
+/* ===== FOOTER TEXT ===== */
+.footer-text {
+    background: var(--white-glass);
+    padding: 28px 24px;
+    text-align: center;
+    font-size: 14px;
+    line-height: 2.2;
+    color: var(--brown-light);
+    border-left: 1px solid rgba(201,168,76,0.25);
+    border-right: 1px solid rgba(201,168,76,0.25);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+/* ===== CALENDAR BUTTONS ===== */
+.calendar-btns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    padding: 28px 24px 36px;
+    background: var(--white-glass);
+    border-radius: 0 0 24px 24px;
+    border: 1px solid rgba(201,168,76,0.25);
+    border-top: none;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.calendar-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 22px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.calendar-btn.google {
+    background: linear-gradient(135deg, #a07830, #c9a84c);
+    color: white;
+    box-shadow: 0 4px 16px rgba(160,120,48,0.25);
+}
+
+.calendar-btn.apple {
+    background: white;
+    color: var(--brown);
+    border: 1.5px solid rgba(201,168,76,0.4);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+}
+
+.calendar-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+}
+
+/* ===== FALLING FLOWERS ===== */
 .flower {
     position: fixed;
-    bottom: 0;
-    font-size: 20px;
+    font-size: clamp(16px, 3vw, 24px);
     animation: floatUp 5s linear forwards;
+    pointer-events: none;
+    z-index: 9999;
 }
 
 @keyframes floatUp {
-    from { transform: translateY(0); opacity: 1; }
-    to { transform: translateY(-100vh); opacity: 0; }
+    0%   { transform: translateY(0) rotate(0deg); opacity: 1; }
+    50%  { opacity: 0.8; }
+    100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+}
+
+/* ===== UTILITY ANIMATIONS ===== */
+/* FIX: @keyframes gradientBG كان مفقوداً */
+@keyframes gradientBG {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 480px) {
+    .names { font-size: 64px; }
+    .logo  { font-size: 70px; }
+
+    .time-box {
+        min-width: 62px;
+        padding: 10px 12px 8px;
+    }
+
+    .time-box span { font-size: 26px; }
+
+    .calendar-btn {
+        font-size: 12px;
+        padding: 10px 16px;
+    }
+
+    .detail-item {
+        padding: 12px 14px;
+    }
 }
