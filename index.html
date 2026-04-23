@@ -6,86 +6,146 @@
 <title>دعوة زفاف M & M</title>
 
 <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/833/833472.png">
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;500;700&family=Great+Vibes&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;700&family=Great+Vibes&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
+<!-- جسيمات الخلفية -->
+<canvas id="particles"></canvas>
+
 <!-- شاشة البداية -->
 <div class="intro" id="intro">
-    <h1 class="logo">M & M</h1>
-    <p>اضغط على القلب</p>
-    <div class="heart" id="openBtn">❤️</div>
+    <div class="intro-inner">
+        <div class="intro-ornament top">✦ ✦ ✦</div>
+        <h1 class="logo">M & M</h1>
+        <p class="intro-subtitle">دعوة زفاف</p>
+        <div class="heart-wrapper">
+            <div class="heart-ring ring1"></div>
+            <div class="heart-ring ring2"></div>
+            <div class="heart" id="openBtn">❤️</div>
+        </div>
+        <p class="intro-hint">اضغط على القلب لتفتح الدعوة</p>
+        <div class="intro-ornament bottom">✦ ✦ ✦</div>
+    </div>
 </div>
 
 <!-- الدعوة -->
 <div class="invitation hidden" id="invitation">
 
-    <div class="names">M & M</div>
+    <div class="invitation-inner">
 
-    <div class="divider"></div>
+        <!-- الرأس -->
+        <div class="header">
+            <div class="header-ornament">✦ &nbsp; دعوة زفاف &nbsp; ✦</div>
+            <div class="names">M & M</div>
+            <div class="names-ar">يتشرفان بدعوتكم</div>
+        </div>
 
-    <!-- العد التنازلي -->
-    <div class="countdown">
-        <div class="time-box">
-            <span id="days"></span>
-            <small>يوم</small>
+        <div class="fancy-divider">
+            <span class="line"></span>
+            <span class="diamond">◆</span>
+            <span class="line"></span>
         </div>
-        <div class="time-box">
-            <span id="hours"></span>
-            <small>ساعة</small>
+
+        <!-- العد التنازلي -->
+        <div class="countdown-section">
+            <p class="countdown-label">تبقّى على الليلة الكبيرة</p>
+            <div class="countdown">
+                <div class="time-box">
+                    <span id="days">00</span>
+                    <small>يوم</small>
+                </div>
+                <div class="time-sep">:</div>
+                <div class="time-box">
+                    <span id="hours">00</span>
+                    <small>ساعة</small>
+                </div>
+                <div class="time-sep">:</div>
+                <div class="time-box">
+                    <span id="minutes">00</span>
+                    <small>دقيقة</small>
+                </div>
+                <div class="time-sep">:</div>
+                <div class="time-box">
+                    <span id="seconds">00</span>
+                    <small>ثانية</small>
+                </div>
+            </div>
         </div>
-        <div class="time-box">
-            <span id="minutes"></span>
-            <small>دقيقة</small>
+
+        <div class="fancy-divider">
+            <span class="line"></span>
+            <span class="diamond">◆</span>
+            <span class="line"></span>
         </div>
-        <div class="time-box">
-            <span id="seconds"></span>
-            <small>ثانية</small>
+
+        <!-- نص الدعوة -->
+        <div class="text">
+            <p class="text-intro">
+                لأنكم جزء غالي من رحلتنا،<br>
+                يسعدنا أن تشاركونا فرحة ليلة عمرنا.
+            </p>
+            <p class="text-body">
+                بكل حب، ندعوكم لمشاركتنا هذه اللحظات التي طال انتظارها.
+            </p>
+
+            <div class="event-details">
+                <div class="detail-item">
+                    <span class="detail-icon">🗓️</span>
+                    <div>
+                        <strong>الأحد، ٢٨ يونيو ٢٠٢٦</strong>
+                        <small>Sunday | 28 June 2026</small>
+                    </div>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-icon">🕙</span>
+                    <div>
+                        <strong>١٠:٣٠ مساءً</strong>
+                        <small>10:30 PM</small>
+                    </div>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-icon">📍</span>
+                    <div>
+                        <strong>صالة الشرق للاحتفالات</strong>
+                        <small>القاعة الملكية — إربد، الأردن</small>
+                    </div>
+                </div>
+            </div>
+
+            <a class="map-link" target="_blank"
+            href="https://maps.app.goo.gl/s29vBzojB1P3SVJD8">
+            🗺️ عرض الموقع على الخريطة
+            </a>
         </div>
+
+        <div class="fancy-divider">
+            <span class="line"></span>
+            <span class="diamond">◆</span>
+            <span class="line"></span>
+        </div>
+
+        <!-- ذيل الدعوة -->
+        <div class="footer-text">
+            سنوافيكم ببقية التفاصيل قريباً،<br>
+            لكن الآن.. يهمنا أن تدوّنوا هذا التاريخ<br>
+            في قلوبكم قبل تقويمكم. 🤍
+        </div>
+
+        <!-- أزرار التقويم -->
+        <div class="calendar-btns">
+            <a class="calendar-btn google" target="_blank"
+            href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Wedding+M%26M&dates=20260628T193000Z/20260628T213000Z&details=Wedding+in+Irbid+-+Al+Sharq+Hall&location=Irbid+Jordan">
+            📅 أضف إلى Google Calendar
+            </a>
+            <a class="calendar-btn apple" href="event.ics" download>
+            📥 Apple / Outlook Calendar
+            </a>
+        </div>
+
     </div>
-
-    <div class="divider"></div>
-
-    <div class="text">
-
-        لأنكم جزء غالي من رحلتنا، يسعدنا أن تشاركونا فرحة ليلة عمرنا.<br>
-        بكل حب، ندعوكم لمشاركتنا هذه اللحظات التي طال انتظارها.<br><br>
-
-        <strong>
-        Sunday | 28 June 2026<br>
-        10:30 PM
-        </strong><br><br>
-
-        وحيكون في مدينة اربد - المملكة الاردنية الهاشمية<br>
-        في صالة الشرق للاحتفالات - القاعة الملكية<br>
-
-        <a class="map-link" target="_blank"
-        href="https://maps.app.goo.gl/s29vBzojB1P3SVJD8">
-        📍 عرض الموقع
-        </a>
-
-        <br><br>
-
-        سنوافيكم ببقية التفاصيل قريباً،<br>
-        لكن الآن.. يهمنا أن تدونوا هذا التاريخ في قلوبكم قبل تقويمكم. 🤍
-
-        <br><br>
-
-        <!-- Google Calendar -->
-        <a class="calendar-btn" target="_blank"
-        href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Wedding+M%26M&dates=20260628T193000Z/20260628T213000Z&details=Wedding+in+Irbid+-+Al+Sharq+Hall&location=Irbid+Jordan">
-        📅 أضف إلى Google Calendar
-        </a>
-
-        <!-- ملف تقويم -->
-        <a class="calendar-btn" href="event.ics" download>
-        📥 تحميل الحدث (Apple/Outlook)
-        </a>
-
-    </div>
-
 </div>
 
 <audio id="music" loop>
