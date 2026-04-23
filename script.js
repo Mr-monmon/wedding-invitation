@@ -1,28 +1,26 @@
 const btn = document.getElementById("openBtn");
 const intro = document.getElementById("intro");
 const invitation = document.getElementById("invitation");
+const music = document.getElementById("music");
 
 btn.addEventListener("click", () => {
-
-    // إخفاء البداية
     intro.style.display = "none";
-
-    // إظهار الدعوة
     invitation.classList.remove("hidden");
 
-    // قلوب متطايرة
+    music.play();
+
     for (let i = 0; i < 30; i++) {
         createHeart();
     }
 });
 
+/* القلوب */
 function createHeart() {
     const heart = document.createElement("div");
     heart.classList.add("heart-float");
-    heart.innerHTML = "💛";
+    heart.innerHTML = "❤️";
 
     heart.style.left = Math.random() * 100 + "vw";
-    heart.style.fontSize = Math.random() * 20 + 15 + "px";
 
     document.body.appendChild(heart);
 
@@ -30,3 +28,16 @@ function createHeart() {
         heart.remove();
     }, 4000);
 }
+
+/* العد التنازلي */
+const targetDate = new Date("2026-06-28T22:30:00").getTime();
+
+setInterval(() => {
+    const now = new Date().getTime();
+    const diff = targetDate - now;
+
+    document.getElementById("days").innerText = Math.floor(diff / (1000*60*60*24));
+    document.getElementById("hours").innerText = Math.floor((diff / (1000*60*60)) % 24);
+    document.getElementById("minutes").innerText = Math.floor((diff / (1000*60)) % 60);
+    document.getElementById("seconds").innerText = Math.floor((diff / 1000) % 60);
+}, 1000);
